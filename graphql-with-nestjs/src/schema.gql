@@ -1,0 +1,84 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+input AuthInput {
+  """password of user"""
+  password: String!
+
+  """username of user"""
+  username: String!
+}
+
+type AuthSchema {
+  bearer_token: String!
+  expires_in: Float!
+  refresh_token: String!
+}
+
+input CreateLikeInput {
+  """ip of the liker"""
+  ip: String!
+
+  """id of post that this like belongs to"""
+  post_id: Float!
+}
+
+input CreateUserInput {
+  """password of user"""
+  password: String!
+
+  """username of user"""
+  username: String!
+}
+
+"""like entity"""
+type LikeEntity {
+  """model id of like"""
+  id: ID!
+
+  """ip of the liker"""
+  ip: String!
+
+  """id of post that this like belongs to"""
+  post_id: Float!
+}
+
+type Mutation {
+  createLike(input: CreateLikeInput!): LikeEntity!
+  createUser(input: CreateUserInput!): UserEntity!
+}
+
+"""post entity"""
+type PostEntity {
+  """model id of post"""
+  id: ID!
+  summary: SummaryType!
+
+  """text content of post"""
+  text: String!
+}
+
+type Query {
+  Login(credentials: AuthInput!): AuthSchema!
+  RefreshToken: AuthSchema!
+  likes: [LikeEntity!]!
+  posts: [PostEntity!]!
+  sayHello: String!
+}
+
+type SummaryType {
+  likes_count: Float!
+}
+
+"""user entity"""
+type UserEntity {
+  """model id of user"""
+  id: ID!
+
+  """password of user"""
+  password: String!
+
+  """username of user"""
+  username: String!
+}
